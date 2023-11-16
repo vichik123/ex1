@@ -10,14 +10,14 @@ struct RLEList_t {
 //implement the functions here
 
 RLEList RLEListCreate() {
-    RLEList list = malloc(sizeof(RLEList_t));
+    RLEList list = malloc(sizeof(struct RLEList_t));
     return list; // If malloc fails this will be NULL
 }
 
 void RLEListDestroy(RLEList list) {
     RLEList next = list->next;
 
-    while (next != null) {
+    while (next != NULL) {
         next = list->next;
         free(list);
         list = next;
@@ -31,7 +31,7 @@ RLEListResult RLEListAppend(RLEList list, char value) {
 
     RLEList next = list->next;
     RLEList temp = list;
-    while (next != null) {
+    while (next != NULL) {
         next = next->next;
         temp = temp->next;
     }
@@ -39,7 +39,7 @@ RLEListResult RLEListAppend(RLEList list, char value) {
     if (temp->c == value) {
         temp->n++; // If the character already at end of list increase count
     } else {
-        temp->next = malloc(sizeof(RLEList_t)); // Otherwise allocate new node
+        temp->next = malloc(sizeof(struct RLEList_t)); // Otherwise allocate new node
         if (temp->next == NULL) {
             return RLE_LIST_OUT_OF_MEMORY;
         }
@@ -69,22 +69,35 @@ RLEListResult RLEListRemove(RLEList list, int index) {
         return RLE_LIST_NULL_ARGUMENT;
     }
     int listLength = RLEListSize(list);
-    if (index < 1 || index >= listLength) {
+    if (index < 0 || index >= listLength) {
         return RLE_LIST_INDEX_OUT_OF_BOUNDS;
     }
 
-    RLEList next = list->next;
     RLEList nextNext = NULL;
-    if (next != null) {
+    //Checks in case list length is 1
+    if (list->next != NULL) {
         nextNext = list->next->next;
+    }else {
+        //Since index is in bounds here index be 0
+        free(list);
+        return RLE_LIST_SUCCESS;
     }
+
+    //In case (length > 1) and (index == 0)
+    if (index == 0) {
+        RLEList temp = list;
+        list = list->next;
+        free(temp);
+        return RLE_LIST_SUCCESS;
+    }
+
+    //Here (length > 1) and (index != 0)
     for (int i = 0; i < index - 1; i++) {
         list = list->next;
-        next = next->next;
         nextNext = nextNext->next;
     }
 
-    free(next);
+    free(list->next);
     list->next = nextNext; // If nextNext is null then the list will simply be shortened
     return RLE_LIST_SUCCESS;
 }
