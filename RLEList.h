@@ -25,6 +25,12 @@
 */
 
 
+struct RLEList_t {
+    char c; // The character the node represents
+    int n; // The number of times the character appears
+    struct RLEList_t *next; // Pointer to the next node
+};
+
 /** 
 * Typedef for defining the RLE list.
 * Complete the implementation of struct RLEList_t defined in RLEList.c
@@ -127,7 +133,7 @@ char RLEListGet(RLEList list, int index, RLEListResult *result);
 * @param list - The RLE list to be exported as a string.
 * @param result - Pointer to be used to store the result of the operation, if it is NULL, the result will not be saved.
 * 	RLE_LIST_NULL_ARGUMENT if a NULL was sent to the function as list.
-* 	LIST_SUCCESS the RLE list has been successfuly exported as a string.
+* 	LIST_SUCCESS the RLE list has been successfully exported as a string.
 * @return
 * 	NULL if result is not RLE_LIST_SUCCESS.
 * 	The string that corresponds to the received RLE list.
