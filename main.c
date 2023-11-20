@@ -29,6 +29,8 @@ int main(int argc, char *argv[]) {
         asciiArtPrintInverted(source, destination_file);
     } else {
         printf("Invalid flag!");
+        fclose(source_file);
+        fclose(destination_file);
         return 0;
     }
 
