@@ -22,18 +22,15 @@ int main(int argc, char *argv[]) {
     }
 
     RLEList source = asciiArtRead(source_file);
-
     if (flag[0] == '-' && flag[1] == 'e') {
         asciiArtPrintEncoded(source, destination_file);
     } else if (flag[0] == '-' && flag[1] == 'i') {
         asciiArtPrintInverted(source, destination_file);
     } else {
         printf("Invalid flag!");
-        fclose(source_file);
-        fclose(destination_file);
-        return 0;
     }
 
     fclose(source_file);
     fclose(destination_file);
+    return 0;
 }

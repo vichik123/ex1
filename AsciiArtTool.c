@@ -11,37 +11,18 @@ RLEList asciiArtRead(FILE *in_stream) {
     }
 
     RLEList head = RLEListCreate();
-    RLEList currNode = head;
     char currentChar;
-    int count = 1;
-
-    // Scanning for the first character
-    if (fscanf(in_stream, "%c", &currentChar) != 1) {
-        return head;
+    if (fscanf(in_stream, "%c", &currentChar) == 1) {
+        head->c = currentChar;
+        head->n = 1;
     } else {
-        currNode->n = count;
-        currNode->c = currentChar;
+        return head;
     }
 
     while (fscanf(in_stream, "%c", &currentChar) == 1) {
-        if (currentChar == currNode->c) {
-            count++;
-        } else {
-            RLEList newNode = malloc(sizeof(struct RLEList_t));
-            if (newNode == NULL) {
-                currNode->n = count;
-                return head;
-            } else {
-                newNode->c = currentChar;
-                newNode->n = 1;
-            }
-            currNode->n = count;
-            currNode->next = newNode;
-            currNode = newNode;
-            count = 1;
-        }
+        RLEListAppend(head, currentChar);
     }
-    currNode->n = count;
+
     return head;
 }
 
@@ -79,18 +60,21 @@ RLEListResult asciiArtPrintEncoded(RLEList list, FILE *out_stream) {
     return RLE_LIST_SUCCESS;
 }
 
+char invertSpace(char c) {
+    if (c == ' ') {
+        return '@';
+    } else if (c == '@') {
+        return ' ';
+    }
+    return c;
+}
 
 RLEListResult asciiArtPrintInverted(RLEList list, FILE *out_stream) {
     if (list == NULL || out_stream == NULL) {
         return RLE_LIST_NULL_ARGUMENT;
     }
 
-    while (list != NULL) {
-        if (list->c == ' ') {
-            list->c = '@';
-        }
-        list = list->next;
-    }
+    RLEListMap(list, invertSpace);
 
     return asciiArtPrint(list, out_stream);
 }
