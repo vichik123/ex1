@@ -5,7 +5,7 @@ int encodedListLength(RLEList pList);
 
 int intLength(int n);
 
-RLEList asciiArtRead(FILE* in_stream) {
+RLEList asciiArtRead(FILE *in_stream) {
     if (in_stream == NULL) {
         return RLEListCreate();
     }
@@ -45,7 +45,7 @@ RLEList asciiArtRead(FILE* in_stream) {
     return head;
 }
 
-RLEListResult asciiArtPrint(RLEList list, FILE* out_stream) {
+RLEListResult asciiArtPrint(RLEList list, FILE *out_stream) {
     if (list == NULL || out_stream == NULL) {
         return RLE_LIST_NULL_ARGUMENT;
     }
@@ -75,7 +75,7 @@ int encodedListLength(RLEList list) {
     }
 
     int length = 0;
-    for(RLEList temp = list;temp->next != NULL; temp = temp->next) {
+    for (RLEList temp = list; temp->next != NULL; temp = temp->next) {
         length += 2; // Adding space for the character and a comma
         length += intLength(temp->n); // Adding space for the number of times the character appears
     }
@@ -83,14 +83,14 @@ int encodedListLength(RLEList list) {
 }
 
 
-RLEListResult asciiArtPrintEncoded(RLEList list, FILE* out_stream) {
+RLEListResult asciiArtPrintEncoded(RLEList list, FILE *out_stream) {
     if (list == NULL || out_stream == NULL) {
         return RLE_LIST_NULL_ARGUMENT;
     }
 
     int listLength = RLEListSize(list);
     int stringLength = encodedListLength(list);
-    char* string = malloc(stringLength); // Each node will be represented as 2 chars [c][n]
+    char *string = malloc(stringLength); // Each node will be represented as 2 chars [c][n]
     if (string == NULL) {
         return RLE_LIST_OUT_OF_MEMORY; // Not on the HW to return anything but NULL_ARGUMENT and SUCCESS...
     }
@@ -105,7 +105,7 @@ RLEListResult asciiArtPrintEncoded(RLEList list, FILE* out_stream) {
                 string[index++] = list->c;
                 int currIntLength = intLength(list->n);
                 int tmpInt = list->n;
-                for(int k = 0; k < currIntLength; k++) {
+                for (int k = 0; k < currIntLength; k++) {
                     string[index++] = '0' + tmpInt % 10;
                     tmpInt /= 10;
                 }

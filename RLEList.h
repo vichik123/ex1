@@ -138,7 +138,7 @@ char RLEListGet(RLEList list, int index, RLEListResult *result);
 * 	NULL if result is not RLE_LIST_SUCCESS.
 * 	The string that corresponds to the received RLE list.
 */
-char* RLEListExportToString(RLEList list, RLEListResult* result);
+char *RLEListExportToString(RLEList list, RLEListResult *result);
 
 
 /**

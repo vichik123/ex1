@@ -14,37 +14,32 @@ bool basicTest();
 
 testFunc tests[] = {
 #define X(name) name,
-    TESTS_NAMES
+        TESTS_NAMES
 #undef X
 };
 
 const char *tests_names[] = {
 #define X(name) #name,
-    TESTS_NAMES
+        TESTS_NAMES
 #undef X
 };
 
 static int number_of_tests = sizeof(tests) / sizeof(tests[0]);
 
-int main(int argc, char **argv)
-{
-    if (argc == 1)
-    {
-        for (int test_idx = 0; test_idx < number_of_tests; test_idx++)
-        {
+int main(int argc, char **argv) {
+    if (argc == 1) {
+        for (int test_idx = 0; test_idx < number_of_tests; test_idx++) {
             RUN_TEST(tests[test_idx], tests_names[test_idx]);
         }
         return 0;
     }
-    if (argc != 2)
-    {
+    if (argc != 2) {
         fprintf(stdout, "Usage: tests <test index>\n");
         return 0;
     }
 
     int test_idx = strtol(argv[1], NULL, 10);
-    if (test_idx < 1 || test_idx > number_of_tests)
-    {
+    if (test_idx < 1 || test_idx > number_of_tests) {
         fprintf(stderr, "Invalid test index %d\n", test_idx);
         return 0;
     }
@@ -53,9 +48,9 @@ int main(int argc, char **argv)
     return 0;
 }
 
-bool basicTest(){
+bool basicTest() {
     RLEList list = RLEListCreate();
-    bool result=true;
+    bool result = true;
     ASSERT_TEST(list != NULL, destroy);
 
     //adding elements to the list
@@ -75,14 +70,13 @@ bool basicTest(){
     // check if the represented string is "abababaaa"
     const char *s = "abababaaa";
     char it;
-    for(int i=0; i<RLEListSize(list); i++)
-    {
-        it=RLEListGet(list, i, NULL);
+    for (int i = 0; i < RLEListSize(list); i++) {
+        it = RLEListGet(list, i, NULL);
         ASSERT_TEST(it == s[i++], destroy);
     }
     //check if the length's are equal
-    ASSERT_TEST(RLEListSize(list)==strlen(s), destroy);
-    
+    ASSERT_TEST(RLEListSize(list) == strlen(s), destroy);
+
     destroy:
     RLEListDestroy(list);
     return result;

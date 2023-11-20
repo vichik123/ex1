@@ -1,16 +1,17 @@
 
 #ifndef RLELIST_H
 #define RLELIST_H
-#include "RLEList.h"
-#endif
 
+#include "RLEList.h"
+
+#endif
 
 
 /*
  * This function open a file that includes Ascii Art
  * and return an RLEList that represents it.
  */
-RLEList asciiArtRead(FILE* in_stream);
+RLEList asciiArtRead(FILE *in_stream);
 
 /*
  * This function writes the RLEList

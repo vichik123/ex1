@@ -73,7 +73,7 @@ RLEListResult RLEListRemove(RLEList list, int index) {
     //Checks in case list length is 1
     if (list->next != NULL) {
         nextNext = list->next->next;
-    }else {
+    } else {
         //Since index is in bounds here index be 0
         free(list);
         return RLE_LIST_SUCCESS;
@@ -117,7 +117,7 @@ char RLEListGet(RLEList list, int index, RLEListResult *result) {
     return list->c;
 }
 
-char* RLEListExportToString(RLEList list, RLEListResult* result) {
+char *RLEListExportToString(RLEList list, RLEListResult *result) {
     if (list == NULL) {
         *result = RLE_LIST_NULL_ARGUMENT;
         return NULL;
@@ -131,7 +131,7 @@ char* RLEListExportToString(RLEList list, RLEListResult* result) {
     }
     int listLength = RLEListSize(list);
 
-    char* string = malloc(sizeof(char) * sum);
+    char *string = malloc(sizeof(char) * sum);
     if (string == NULL) {
         *result = RLE_LIST_ERROR;
         return NULL;
