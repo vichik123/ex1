@@ -89,3 +89,18 @@ RLEListResult asciiArtPrintEncoded(RLEList list, FILE* out_stream) {
     free(string);
     return RLE_LIST_SUCCESS;
 }
+
+RLEListResult asciiArtPrintInverted(RLEList list, FILE *out_stream) {
+    if (list == NULL || out_stream == NULL) {
+        return RLE_LIST_NULL_ARGUMENT;
+    }
+
+    while (list != null) {
+        if (list->c == ' ') {
+            list->c = '@';
+        }
+        list = list->next;
+    }
+
+    return asciiArtPrint(list, out_stream);
+}
