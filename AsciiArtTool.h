@@ -30,8 +30,3 @@ RLEListResult asciiArtPrintEncoded(RLEList list, FILE *out_stream);
  * changing all the spaces from the list file to a '@' character.
  */
 RLEListResult asciiArtPrintInverted(RLEList list, FILE *out_stream);
-
-/*
- * This function calculates the length of an RLEList as a string
- */
-int encodedListLength(RLEList list);

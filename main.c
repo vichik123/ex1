@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
         printf("Couldn't open source file %s", source_path);
         return 0;
     }
-    FILE *destination_file = fopen(destination_path, "w");
+    FILE *destination_file = fopen(destination_path, "wt");
     if (destination_file == NULL) {
         printf("Couldn't open destination file %s", destination_path);
         return 0;

@@ -126,6 +126,9 @@ RLEListResult RLEListRemove(RLEList list, int index);
 */
 char RLEListGet(RLEList list, int index, RLEListResult *result);
 
+int intLength(int num);
+
+int encodedListLength(RLEList list);
 
 /**
 *   RLEListExportToString: Returns the characters found in an RLE list as a string.

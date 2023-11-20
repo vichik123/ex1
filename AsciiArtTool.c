@@ -60,62 +60,18 @@ RLEListResult asciiArtPrint(RLEList list, FILE *out_stream) {
     return RLE_LIST_SUCCESS;
 }
 
-int intLength(int num) {
-    int length = 1;
-    while (num >= 10) {
-        num /= 10;
-        length++;
-    }
-    return length;
-}
-
-int encodedListLength(RLEList list) {
-    if (list == NULL) {
-        return RLE_LIST_NULL_ARGUMENT;
-    }
-
-    int length = 0;
-    for (RLEList temp = list; temp->next != NULL; temp = temp->next) {
-        length += 2; // Adding space for the character and a comma
-        length += intLength(temp->n); // Adding space for the number of times the character appears
-    }
-    return length;
-}
-
-
 RLEListResult asciiArtPrintEncoded(RLEList list, FILE *out_stream) {
     if (list == NULL || out_stream == NULL) {
         return RLE_LIST_NULL_ARGUMENT;
     }
 
-    int listLength = RLEListSize(list);
-    int stringLength = encodedListLength(list);
-    char *string = malloc(stringLength); // Each node will be represented as 2 chars [c][n]
+    RLEListResult exportResult;
+    char *string = RLEListExportToString(list, &exportResult);
     if (string == NULL) {
         return RLE_LIST_OUT_OF_MEMORY; // Not on the HW to return anything but NULL_ARGUMENT and SUCCESS...
     }
-
-    RLEListResult exportResult;
-    string = RLEListExportToString(list, &exportResult);
-
-    int index = 0;
-    switch (exportResult) {
-        case RLE_LIST_SUCCESS:
-            for (int i = 0; i < listLength; i++) {
-                string[index++] = list->c;
-                int currIntLength = intLength(list->n);
-                int tmpInt = list->n;
-                for (int k = 0; k < currIntLength; k++) {
-                    string[index++] = '0' + tmpInt % 10;
-                    tmpInt /= 10;
-                }
-                string[index++] = ',';
-                list = list->next;
-            }
-            break;
-        case RLE_LIST_ERROR:
-            free(string);
-            return RLE_LIST_ERROR;
+    if (exportResult != RLE_LIST_SUCCESS) {
+        return exportResult;
     }
 
     fprintf(out_stream, "%s", string);
