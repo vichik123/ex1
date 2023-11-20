@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MATAM2.dir/AsciiArtTool.c.obj.d"
   "CMakeFiles/MATAM2.dir/RLEList.c.obj"
   "CMakeFiles/MATAM2.dir/RLEList.c.obj.d"
+  "CMakeFiles/MATAM2.dir/main.c.obj"
+  "CMakeFiles/MATAM2.dir/main.c.obj.d"
   "MATAM2.exe"
   "MATAM2.exe.manifest"
   "MATAM2.pdb"

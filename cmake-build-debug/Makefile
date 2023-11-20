@@ -176,6 +176,30 @@ RLEList.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MATAM2.dir\build.make CMakeFiles/MATAM2.dir/RLEList.c.s
 .PHONY : RLEList.c.s
 
+main.obj: main.c.obj
+.PHONY : main.obj
+
+# target to build an object file
+main.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MATAM2.dir\build.make CMakeFiles/MATAM2.dir/main.c.obj
+.PHONY : main.c.obj
+
+main.i: main.c.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MATAM2.dir\build.make CMakeFiles/MATAM2.dir/main.c.i
+.PHONY : main.c.i
+
+main.s: main.c.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MATAM2.dir\build.make CMakeFiles/MATAM2.dir/main.c.s
+.PHONY : main.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -191,6 +215,9 @@ help:
 	@echo ... RLEList.obj
 	@echo ... RLEList.i
 	@echo ... RLEList.s
+	@echo ... main.obj
+	@echo ... main.i
+	@echo ... main.s
 .PHONY : help
 
 

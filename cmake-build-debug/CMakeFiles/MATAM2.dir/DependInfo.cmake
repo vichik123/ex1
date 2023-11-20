@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/eitan/Matam/ex1/AsciiArtTool.c" "CMakeFiles/MATAM2.dir/AsciiArtTool.c.obj" "gcc" "CMakeFiles/MATAM2.dir/AsciiArtTool.c.obj.d"
   "C:/Users/eitan/Matam/ex1/RLEList.c" "CMakeFiles/MATAM2.dir/RLEList.c.obj" "gcc" "CMakeFiles/MATAM2.dir/RLEList.c.obj.d"
+  "C:/Users/eitan/Matam/ex1/main.c" "CMakeFiles/MATAM2.dir/main.c.obj" "gcc" "CMakeFiles/MATAM2.dir/main.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -88,6 +88,9 @@
 		<Unit filename="C:/Users/eitan/Matam/ex1/RLEList.h">
 			<Option target="MATAM2"/>
 		</Unit>
+		<Unit filename="C:/Users/eitan/Matam/ex1/main.c">
+			<Option target="MATAM2"/>
+		</Unit>
 		<Unit filename="C:/Users/eitan/Matam/ex1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
