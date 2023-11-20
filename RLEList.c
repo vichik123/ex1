@@ -124,9 +124,10 @@ char* RLEListExportToString(RLEList list, RLEListResult* result) {
     }
 
     int sum = 0;
-    while (list != NULL) {
-        sum += list->n;
-        list = list->next;
+    RLEList temp = list;
+    while (temp != NULL) {
+        sum += temp->n;
+        temp = temp->next;
     }
     int listLength = RLEListSize(list);
 
