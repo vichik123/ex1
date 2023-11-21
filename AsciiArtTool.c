@@ -1,10 +1,6 @@
 #include "RLEList.h"
 #include <stdlib.h>
 
-int encodedListLength(RLEList pList);
-
-int intLength(int n);
-
 RLEList asciiArtRead(FILE *in_stream) {
     if (in_stream == NULL) {
         return RLEListCreate();
